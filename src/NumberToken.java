@@ -7,35 +7,35 @@ public class NumberToken extends Token{
         StringBuffer buffer = new StringBuffer();
         buffer.append(source.curChar()); // we have the first character that Scanner has read the rest of digits.
         //return the number token
-        extractNumber(buffer);
-        text = buffer.toString();
+//        getNumber(buffer);
+        extract();
     }
 
-    protected void extract()  throws IOException {
+    public void extract()  throws IOException {
         StringBuffer buffer = new StringBuffer();
         buffer.append(source.curChar());
-        extractNumber(buffer);
+        getNumber(buffer);
         text = buffer.toString();
     }
 
+    private int getNumber(StringBuffer digits) {
 
-    protected int extractNumber(StringBuffer digits) {
+        tokenType = TokenType.NUMBER;
+        int currentNum = 0;
+        int prevNumber = -1;
+        int index = 0;
 
         if (digits == null) {
             return 0;
         }
-        int curVal = 0;
-        int prevValue = -1;
-        int index = 0;
 
-        while ((index < digits.length()) && (curVal >= prevValue)) {
-            prevValue = curVal;
-//            curVal = 10 * curVal +  Character.getNumericValue(digits.charAt(index++));
-            curVal = Character.getNumericValue(digits.charAt(index++));
+        while ((index < digits.length()) && (currentNum >= prevNumber)) {
+            prevNumber = currentNum;
+            currentNum = Character.getNumericValue(digits.charAt(index++));
         }
 
-        if (curVal >= prevValue) {
-            return curVal;
+        if (currentNum >= prevNumber) {
+            return currentNum;
         }
         else
             return 0;

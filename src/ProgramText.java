@@ -76,6 +76,7 @@ public class ProgramText {
             e.printStackTrace();
         }
     }
+
     private String readWholeProgram() throws IOException {
         return new String(Files.readAllBytes(Paths.get("program1.txt")));
     }
@@ -108,24 +109,22 @@ public class ProgramText {
         return progText.charAt(curPos);
     }
 
-    public char peekChar()
-            throws Exception
-    {
-        curChar();
-        if (progText == null) {
-            return EOF;
-        }
-
-        int nextPos = curPos + 1;
-        return nextPos < progText.length() ? progText.charAt(nextPos) : EOL;
-    }
-
     private void readLine() throws IOException {
         progText = bufferedReader.readLine();
         curPos = -1;
         if (progText != null) {
             ++curPos;
         }
+        //   try {
+//            progText = bufferedReader.readLine();
+//            curPos = -1;
+//            if (progText != null) {
+//                ++curPos;
+//            }
+//        } catch (IOException e) {
+//            e.printStackTrace ();
+//        }
     }
 
 }
+

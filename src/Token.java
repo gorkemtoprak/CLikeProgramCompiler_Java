@@ -6,6 +6,7 @@ import java.io.IOException;
     protected TokenType tokenType;
     protected String text;
     protected ProgramText source;
+    protected Object value;
 
     Token (ProgramText source) throws IOException {
         this.source = source;
@@ -20,12 +21,12 @@ import java.io.IOException;
         return text;
     }
 
-    protected void extract() throws IOException {
+    public void extract() throws IOException {
         text = Character.toString(source.curChar());
         source.nextChar();
 //        nextChar();
     }
-    protected char currentChar() throws IOException {
+    public char currentChar() throws IOException {
         return source.curChar();
     }
 

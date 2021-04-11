@@ -1,28 +1,43 @@
 import java.io.IOException;
 
 public class SpecialToken extends Token{
-    SpecialToken(ProgramText source) throws IOException {
+    SpecialToken(ProgramText source, String text, TokenType specialtype) throws IOException{
         super(source);
+        this.text = text;
+        this.tokenType = specialtype;
     }
 
-    protected void extract() throws IOException {
+    public void extract() throws IOException {
         char currentChar = currentChar();
         text = Character.toString(currentChar);
         switch (currentChar) {
             case';':{
-                tokenType = TokenType.SEMI_COLON;
-                nextChar();
-                break;
+                currentChar = nextChar();
+                if (currentChar == '=') {
+                    text += currentChar;
+                    nextChar();
+                }
+                else if (currentChar == ';') {
+                    tokenType = TokenType.SEMI_COLON;
+                    text += currentChar;
+                    nextChar();
+                }
             }
             case ')': {
-                tokenType = TokenType.RIGHT_PAR;
-                nextChar();
-                break;
+                currentChar = nextChar();
+                if (currentChar == '=') {
+                    text += currentChar;
+                    nextChar();
+                }
+                else if (currentChar == ')') {
+                    tokenType = TokenType.RIGHT_PAR;
+                    text += currentChar;
+                    nextChar();
+                }
             }
             case '(': {
                 currentChar = nextChar();
                 if (currentChar == '=') {
-                    tokenType = TokenType.EQUAL;
                     text += currentChar;
                     nextChar();
                 }
@@ -40,7 +55,7 @@ public class SpecialToken extends Token{
                     nextChar();
                 }
                 else if (currentChar == '+') {
-                    tokenType = TokenType.PLUS;
+                    tokenType = TokenType.RIGHT_CURLY;
                     text += currentChar;
                     nextChar();
                 }

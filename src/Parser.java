@@ -14,12 +14,17 @@ public class Parser {
     Parser(Scanner scanner){
         this.scanner = scanner;
     }
+
     //this parse method will be used only for the first assignment
     void parse() throws Exception {
-//        token = scanner.nextToken();
         //While we do not reach the end of file we will keep asking the scanner for the next token
         while (!((token = nextToken()) instanceof EOFToken)){
-            System.out.printf("Token Text: %s - Token Type: %s \n", token.getText(), token.getTokenType());
+            if(token == null){
+//                System.out.println("token is returning null..");
+            }
+            else{
+                System.out.printf("(Token Text: %s) - (Token Type: %s)\n", token.getText(), token.getTokenType());
+            }
         }
     }
 

@@ -1,17 +1,12 @@
+import java.util.Hashtable;
 
 public enum TokenType {
-    LEFT_CURLY("{"),
-    RIGHT_CURLY("}"),
-    LEFT_PAR("("),
-    RIGHT_PAR(")"),
-    EQUAL("="),
-    PLUS("+"),
-    SEMI_COLON(";"),
-    LESS_THAN("<"),
+    LEFT_CURLY("{"), RIGHT_CURLY("}"), LEFT_PAR("("), RIGHT_PAR(")"),
+    EQUAL("="), PLUS("+"),  SEMI_COLON(";"), LESS_THAN("<"),
+
     WHILE,
-    IDENTIFIER,
-    NUMBER,
-    SPACE;
+
+    IDENTIFIER, NUMBER;
 
     private String text;
 
@@ -20,5 +15,10 @@ public enum TokenType {
     }
     TokenType(){
         this.text = this.toString();
+    }
+
+    //This getter just for the get all of the text values..
+    public String getText() {
+        return text;
     }
 }
