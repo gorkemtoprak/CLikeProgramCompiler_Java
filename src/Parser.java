@@ -7,6 +7,9 @@
 //S -> if(E){S+}
 //E -> E + T
 
+//@AUTHOR: GORKEM TOPRAK
+//DATE: April 11, 2021 Sunday
+
 public class Parser {
     private Scanner scanner;
     private Token token;
@@ -23,7 +26,7 @@ public class Parser {
 //                System.out.println("token is returning null..");
             }
             else{
-                System.out.printf("(Token Text: %s) - (Token Type: %s)\n", token.getText(), token.getTokenType());
+                System.out.printf("Token Text: %s  - Token Type: %s \n", token.getText(), token.getTokenType());
             }
         }
     }

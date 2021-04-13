@@ -1,5 +1,6 @@
-import java.io.BufferedReader;
-import java.io.FileReader;
+
+//@AUTHOR: GORKEM TOPRAK
+//DATE: April 11, 2021 Sunday
 
 public class Compiler {
 
@@ -8,14 +9,14 @@ public class Compiler {
 
     public Compiler(){
         try {
-            FileReader fileReader = new FileReader("program1.txt");
-            programText = new ProgramText(new BufferedReader(fileReader));
+            programText = new ProgramText();
             Scanner scanner = new Scanner(programText);
-            parser = new Parser(scanner);
-            parser.parse();
+            for(int i=0; i<programText.progText.length(); i++){
+                parser = new Parser(scanner);
+                parser.parse();
+            }
         }
         catch (Exception e) {
-            System.out.println("Error occur..!");
             e.printStackTrace();
         }
     }

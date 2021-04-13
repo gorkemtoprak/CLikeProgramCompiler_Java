@@ -1,19 +1,28 @@
 import java.io.IOException;
 
+//@AUTHOR: GORKEM TOPRAK
+//DATE: April 11, 2021 Sunday
+
 public class IdentifierToken extends Token{
     IdentifierToken(ProgramText source) throws IOException {
         super(source);
     }
 
     public void extract()  throws IOException {
-        StringBuilder textBuffer = new StringBuilder();
-        char currentChar = currentChar();
+        StringBuilder stringBuilder = new StringBuilder();
+        char curChar = currentChar();
 
-        while (Character.isLetter(currentChar)) {
-            textBuffer.append(currentChar);
-            currentChar = nextChar();
+        while(Character.isLetter(curChar)) {
+            stringBuilder.append(curChar);
+            curChar = nextChar();
         }
-        text = textBuffer.toString();
-        tokenType = TokenType.IDENTIFIER;
+
+        text = stringBuilder.toString();
+        if (text.contains("while")){
+            tokenType = TokenType.WHILE;
+        }
+        else {
+            tokenType = TokenType.IDENTIFIER;
+        }
     }
 }
