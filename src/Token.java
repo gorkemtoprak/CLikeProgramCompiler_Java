@@ -3,7 +3,7 @@ import java.io.IOException;
 //This class denotes a token in language
 
 //@AUTHOR: GORKEM TOPRAK
-//DATE: April 11, 2021 Sunday
+//DATE: May 3, 2021 Monday
 
  public class Token {
 
@@ -11,7 +11,7 @@ import java.io.IOException;
     public String text;
     public ProgramText source;
 
-    Token (ProgramText source) throws IOException {
+    Token (ProgramText source){
         this.source = source;
         extract();
     }
@@ -24,11 +24,11 @@ import java.io.IOException;
         return text;
     }
 
-    public void extract() throws IOException {
+    public void extract(){
         text = Character.toString(source.curChar());
         source.nextChar();
     }
-    public char currentChar() throws IOException {
+    public char currentChar(){
         return source.curChar();
     }
 

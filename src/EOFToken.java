@@ -1,11 +1,15 @@
 import java.io.IOException;
 
 //@AUTHOR: GORKEM TOPRAK
-//DATE: April 11, 2021 Sunday
+//DATE: May 3, 2021 Monday
 
 public class EOFToken extends Token{
-    EOFToken(ProgramText source) throws IOException {
+    EOFToken(ProgramText source){
         super(source);
-//        System.exit(0);
+        extract();
+    }
+
+    public void extract(){
+        tokenType = TokenType.END_OF_FILE;
     }
 }

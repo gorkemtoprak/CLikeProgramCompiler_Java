@@ -1,9 +1,8 @@
 
-x = 10;
- sum = 0;
+x = 10 ;
+sum = 0 ;
 
-while ( x < 20 )
-{
+while ( x < 20 ) {
 	sum = sum + x ;
-	x = x + 1;
- }
+	x = x + 1 ;
+}

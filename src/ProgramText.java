@@ -8,7 +8,7 @@ import java.nio.file.Paths;
 // It reads the program (from a file or as a String) line by line from top to bottom.
 
 //@AUTHOR: GORKEM TOPRAK
-//DATE: April 11, 2021 Sunday
+//DATE: May 3, 2021 Monday
 
 public class ProgramText {
 
@@ -29,10 +29,10 @@ public class ProgramText {
     }
 
     private String readWholeProgram() throws IOException {
-        return new String(Files.readAllBytes(Paths.get("program1.txt")));
+        return new String(Files.readAllBytes(Paths.get("program2.txt")));
     }
 
-    char curChar() throws IOException {
+    char curChar(){
         if (curPos == -1) {
             readLine();
             return nextChar();
@@ -40,38 +40,36 @@ public class ProgramText {
         else if (progText == null) {
             return EOF;
         }
-        else if (curPos > progText.length()) {
-            readLine();
-            return nextChar();
-        }
         else {
-            return progText.charAt(curPos);
+            if(curPos <= progText.length()){
+                return progText.charAt(curPos);
+            }
+
         }
+        return EOF;
     }
 
     char nextChar() {
         curPos++;
         if(curPos == progText.length())
             return EOF;
+        if(curPos <= progText.length()){
+            return progText.charAt(curPos);
+        }
 
-        return progText.charAt(curPos);
+        return EOF;
     }
 
-    private void readLine() throws IOException {
-        progText = bufferedReader.readLine();
+    private void readLine(){
+        try {
+            progText = bufferedReader.readLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         curPos = -1;
         if (progText != null) {
             ++curPos;
         }
-        //   try {
-//            progText = bufferedReader.readLine();
-//            curPos = -1;
-//            if (progText != null) {
-//                ++curPos;
-//            }
-//        } catch (IOException e) {
-//            e.printStackTrace ();
-//        }
     }
 
 }

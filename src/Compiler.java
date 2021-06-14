@@ -1,18 +1,21 @@
 
 //@AUTHOR: GORKEM TOPRAK
-//DATE: April 11, 2021 Sunday
+//DATE: May 3, 2021 Monday
 
 public class Compiler {
 
     private Parser parser;
     private ProgramText programText;
+    private String label;
 
     public Compiler(){
+
         try {
+            label = "P";
             programText = new ProgramText();
             Scanner scanner = new Scanner(programText);
             for(int i=0; i<programText.progText.length(); i++){
-                parser = new Parser(scanner);
+                parser = new Parser(scanner, label);
                 parser.parse();
             }
         }

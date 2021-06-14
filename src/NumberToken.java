@@ -1,22 +1,24 @@
 import java.io.IOException;
 
 //@AUTHOR: GORKEM TOPRAK
-//DATE: April 11, 2021 Sunday
+//DATE: May 3, 2021 Monday
 
 public class NumberToken extends Token{
 
-    NumberToken(ProgramText source) throws IOException {
+    NumberToken(ProgramText source){
         super(source);
-        StringBuffer buffer = new StringBuffer();
-        buffer.append(source.curChar()); // we have the first character that Scanner has read the rest of digits.
         //return the number token
         extract();
     }
 
-    public void extract()  throws IOException {
-        StringBuffer buffer = new StringBuffer();
-        buffer.append(source.curChar());
-        text = buffer.toString();
+    public void extract() {
+        StringBuilder stringBuilder = new StringBuilder();
+        char curChar = currentChar();
+        while(Character.isDigit(curChar)) {
+            stringBuilder.append(curChar);
+            curChar = nextChar();
+            text = stringBuilder.toString();
+        }
         tokenType = TokenType.NUMBER;
     }
 
